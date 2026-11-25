@@ -1,0 +1,51 @@
+# Checks for the Translation app: lint and the unit tests, on pull requests and after each merge.
+# They don't build an APK: releases do (release.yaml). A beta needs them green (beta.yaml).
+name: Checks
+
+on:
+  pull_request:
+    branches: [ develop, main ]
+  push:
+    branches: [ develop, main ]
+  workflow_dispatch:
+
+# A new push to the same pull request cancels the checks still running for the old one.
+concurrency:
+  group: checks-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  app:
+    name: Android app (lint + tests)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      # The runner has the Android SDK (ANDROID_HOME); Gradle fetches the platform it needs.
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Lint and unit tests
+        run: ./gradlew --no-daemon lintDebug testDebugUnitTest
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Release scripts
+        run: node --test scripts/release/lib.test.mjs
+
+      - name: Lint report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-report
+          path: app/build/reports/
+          if-no-files-found: ignore
