@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">OpenPres Translation</string>
+    <string name="choose_server">Choose the church\'s OpenPres server.</string>
+    <string name="looking">Looking for OpenPres servers on the network…</string>
+    <string name="address_hint">Or type its address: 192.168.1.20</string>
+    <string name="connect">Connect</string>
+    <string name="not_an_address">That isn\'t an address. Try something like 192.168.1.20 or studio-pc:8787.</string>
+    <string name="server_note">The phone has to be on the same Wi-Fi as the server.</string>
+    <string name="cant_reach">Can\'t reach the OpenPres server at %1$s (%2$s).</string>
+    <string name="other_server">Other server</string>
+    <string name="looking_for_tracks">Asking the server for its translations…</string>
+    <string name="no_translation_now">No translation right now. It appears here when it starts.</string>
+    <string name="no_tracks">This server has no translations.</string>
+    <string name="listen_to">Listen: %1$s</string>
+    <string name="stop_track">Stop %1$s</string>
+    <string name="listening_to">Listening: %1$s</string>
+    <string name="connecting">Connecting…</string>
+    <string name="reconnecting">Connection lost: trying again…</string>
+    <string name="track_off">The translation stopped. It goes on when it starts again.</string>
+    <string name="volume_note">It keeps playing with the screen off. Use the phone\'s volume buttons.</string>
+    <string name="channel_name">Listening</string>
+    <string name="stop">Stop</string>
+    <string name="update_title">OpenPres Translation %1$s is available</string>
+    <string name="update_message">This app is %1$s. Download the new one, then open it to install it over this one.</string>
+    <string name="download">Download</string>
+    <string name="later">Later</string>
 </resources>
