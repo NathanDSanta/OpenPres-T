@@ -12,7 +12,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import com.nathandsanta.openpres.viewer.Ui.dp
+import com.nathandsanta.openpres.translation.Ui.dp
 
 /**
  * The first screen: the OpenPres servers on the network, or a typed address. The server used
