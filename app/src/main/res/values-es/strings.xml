@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OpenPres Traducción</string>
+    <string name="choose_server">Elige el servidor OpenPres de la iglesia.</string>
+    <string name="looking">Buscando servidores OpenPres en la red…</string>
+    <string name="address_hint">O escribe su dirección: 192.168.1.20</string>
+    <string name="connect">Conectar</string>
+    <string name="not_an_address">Eso no es una dirección. Prueba algo como 192.168.1.20 o studio-pc:8787.</string>
+    <string name="server_note">El teléfono tiene que estar en la misma red Wi-Fi que el servidor.</string>
+    <string name="cant_reach">No se puede conectar con el servidor OpenPres en %1$s (%2$s).</string>
+    <string name="other_server">Otro servidor</string>
+    <string name="looking_for_tracks">Preguntando al servidor por sus traducciones…</string>
+    <string name="no_translation_now">Ahora no hay traducción. Aparecerá aquí cuando empiece.</string>
+    <string name="no_tracks">Este servidor no tiene traducciones.</string>
+    <string name="listen_to">Escuchar: %1$s</string>
+    <string name="stop_track">Parar %1$s</string>
+    <string name="listening_to">Escuchando: %1$s</string>
+    <string name="connecting">Conectando…</string>
+    <string name="reconnecting">Se perdió la conexión: reintentando…</string>
+    <string name="track_off">La traducción se ha parado. Seguirá cuando vuelva a empezar.</string>
+    <string name="volume_note">Sigue sonando con la pantalla apagada. Usa los botones de volumen del teléfono.</string>
+    <string name="channel_name">Escuchando</string>
+    <string name="stop">Parar</string>
+    <string name="update_title">OpenPres Traducción %1$s está disponible</string>
+    <string name="update_message">Esta aplicación es la %1$s. Descarga la nueva y ábrela para instalarla encima de esta.</string>
+    <string name="download">Descargar</string>
+    <string name="later">Más tarde</string>
+</resources>
