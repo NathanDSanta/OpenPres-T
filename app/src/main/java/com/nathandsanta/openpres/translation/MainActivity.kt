@@ -45,13 +45,17 @@ class MainActivity : Activity() {
         empty = Ui.text(this, getString(R.string.looking), 14f, Ui.MUTED).apply { setPadding(0, dp(8), 0, dp(8)) }
         content.addView(empty)
 
+        // The field and the button are as tall as each other, with room for the text at any
+        // font size; the explanation goes above, so the field only holds an address.
+        content.addView(Ui.text(this, getString(R.string.address_label), 14f, Ui.MUTED).apply { setPadding(0, dp(20), 0, dp(8)) })
         val address = EditText(this).apply {
             hint = getString(R.string.address_hint)
+            textSize = 16f
             setTextColor(Ui.TEXT)
             setHintTextColor(Ui.MUTED)
             background = Ui.rounded(context, Ui.CARD, Ui.BORDER)
-            setPadding(dp(14), 0, dp(14), 0)
-            minHeight = dp(48)
+            setPadding(dp(14), dp(12), dp(14), dp(12))
+            minHeight = dp(FIELD_HEIGHT)
             isSingleLine = true
             inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_URI
             imeOptions = EditorInfo.IME_ACTION_GO
@@ -66,11 +70,10 @@ class MainActivity : Activity() {
         val typed = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(0, dp(20), 0, 0)
             addView(address, LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f))
             addView(
-                Ui.button(context, getString(R.string.connect), primary = true) { connect() },
-                LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT).apply { marginStart = dp(8) },
+                Ui.button(context, getString(R.string.connect), primary = true) { connect() }.apply { minHeight = dp(FIELD_HEIGHT) },
+                LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT).apply { marginStart = dp(8) },
             )
         }
         content.addView(typed)
@@ -127,5 +130,7 @@ class MainActivity : Activity() {
 
     companion object {
         const val LAST_SERVER = "lastServer"
+        /** The address field's and the Connect button's height (dp). */
+        private const val FIELD_HEIGHT = 52
     }
 }

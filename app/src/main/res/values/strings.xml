@@ -3,7 +3,8 @@
     <string name="app_name">OpenPres Translation</string>
     <string name="choose_server">Choose the church\'s OpenPres server.</string>
     <string name="looking">Looking for OpenPres servers on the network…</string>
-    <string name="address_hint">Or type its address: 192.168.1.20</string>
+    <string name="address_label">Or type its address</string>
+    <string name="address_hint">192.168.1.20</string>
     <string name="connect">Connect</string>
     <string name="not_an_address">That isn\'t an address. Try something like 192.168.1.20 or studio-pc:8787.</string>
     <string name="server_note">The phone has to be on the same Wi-Fi as the server.</string>
