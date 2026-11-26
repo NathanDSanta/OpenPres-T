@@ -3,7 +3,8 @@
     <string name="app_name">OpenPres Traducción</string>
     <string name="choose_server">Elige el servidor OpenPres de la iglesia.</string>
     <string name="looking">Buscando servidores OpenPres en la red…</string>
-    <string name="address_hint">O escribe su dirección: 192.168.1.20</string>
+    <string name="address_label">O escribe su dirección</string>
+    <string name="address_hint">192.168.1.20</string>
     <string name="connect">Conectar</string>
     <string name="not_an_address">Eso no es una dirección. Prueba algo como 192.168.1.20 o studio-pc:8787.</string>
     <string name="server_note">El teléfono tiene que estar en la misma red Wi-Fi que el servidor.</string>
