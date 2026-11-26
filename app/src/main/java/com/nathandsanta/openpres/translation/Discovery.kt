@@ -4,15 +4,18 @@ import android.content.Context
 import android.net.nsd.NsdManager
 import android.net.nsd.NsdServiceInfo
 import android.net.wifi.WifiManager
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import java.net.InetAddress
 
 /** An OpenPres server on the network. */
 data class FoundServer(val name: String, val address: String, val version: String)
 
 /**
  * Finds OpenPres servers on the network: they announce themselves as "_openpres._tcp" (the
- * desktop manager finds them the same way). Calls `onChange` on the main thread.
+ * desktop manager finds them the same way). Only their IPv4 addresses are used. Calls
+ * `onChange` on the main thread.
  */
 class Discovery(context: Context, private val onChange: (List<FoundServer>) -> Unit) {
     private val nsd = context.getSystemService(Context.NSD_SERVICE) as NsdManager
@@ -85,8 +88,7 @@ class Discovery(context: Context, private val onChange: (List<FoundServer>) -> U
 
                 override fun onServiceResolved(serviceInfo: NsdServiceInfo) {
                     main.post {
-                        @Suppress("DEPRECATION")
-                        val host = serviceInfo.host?.hostAddress
+                        val host = Addresses.ipv4(addressesOf(serviceInfo))
                         if (host != null) {
                             val text = { key: String -> serviceInfo.attributes[key]?.toString(Charsets.UTF_8).orEmpty() }
                             found[serviceInfo.serviceName] = FoundServer(
@@ -105,6 +107,15 @@ class Discovery(context: Context, private val onChange: (List<FoundServer>) -> U
     }
 
     private fun publish() = onChange(found.values.toList())
+
+    /** Every address the server announced (Android 14 on), or the one older versions give. */
+    private fun addressesOf(info: NsdServiceInfo): List<InetAddress> =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            info.hostAddresses
+        } else {
+            @Suppress("DEPRECATION")
+            listOfNotNull(info.host)
+        }
 
     companion object {
         const val SERVICE = "_openpres._tcp"
