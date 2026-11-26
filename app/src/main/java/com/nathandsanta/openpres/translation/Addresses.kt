@@ -1,5 +1,8 @@
 package com.nathandsanta.openpres.translation
 
+import java.net.Inet4Address
+import java.net.InetAddress
+
 /** Server addresses as people type them: "192.168.1.20", "studio-pc:8787", "http://…". */
 object Addresses {
     const val DEFAULT_PORT = 8787
@@ -19,9 +22,16 @@ object Addresses {
         return "$scheme://$host:$port"
     }
 
-    /** A found server's address, IPv6 in brackets. */
+    /** A found server's address ("http://192.168.1.20:8787"), IPv6 in brackets. */
     fun of(host: String, port: Int): String {
         val h = if (host.contains(':')) "[${host.replace("%", "%25")}]" else host
         return "http://$h:$port"
     }
+
+    /**
+     * The address to use of a found server's: its first IPv4 one. Servers also announce IPv6
+     * addresses (often link-local, fe80::…), which phones on a church Wi-Fi can't always reach;
+     * those are ignored. Null: it announced no IPv4 address.
+     */
+    fun ipv4(addresses: List<InetAddress>): String? = addresses.firstOrNull { it is Inet4Address }?.hostAddress
 }
